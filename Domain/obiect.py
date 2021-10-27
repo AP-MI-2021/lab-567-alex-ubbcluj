@@ -8,7 +8,7 @@ def creeaza_obiect(ID, nume, descriere, pret_achizitie, locatie):
     param. locatie: string (exact 4 caractere)
     return: un dictionar ce contine un obiect
     """
-    return [ID, nume, descriere, pret_achizitie, locatie]
+    return {"id": ID, "nume": nume, "descriere": descriere, "pret": pret_achizitie, "locatie": locatie}
 
 
 def get_ID(obiect):
@@ -16,7 +16,7 @@ def get_ID(obiect):
     obiect: dictionar ce contine un obiect
     return: ID-ul obiectului
     """
-    return obiect[0]
+    return obiect["id"]
 
 
 def get_nume(obiect):
@@ -24,7 +24,7 @@ def get_nume(obiect):
     obiect: dictionar ce contine un obiect
     return: numele obiectului
     """
-    return obiect[1]
+    return obiect["nume"]
 
 
 def get_descriere(obiect):
@@ -32,7 +32,7 @@ def get_descriere(obiect):
     obiect: dictionar ce contine un obiect
     return: descrierea obiectului
     """
-    return obiect[2]
+    return obiect["descriere"]
 
 
 def get_pret_achizitie(obiect):
@@ -40,7 +40,7 @@ def get_pret_achizitie(obiect):
     obiect: dictionar ce contine un obiect
     return: pretul de achizitie al obiectului
     """
-    return obiect[3]
+    return obiect["pret"]
 
 
 def get_locatie(obiect):
@@ -48,7 +48,7 @@ def get_locatie(obiect):
     obiect: dictionar ce contine un obiect
     return: locatia obiectului
     """
-    return obiect[4]
+    return obiect["locatie"]
 
 
 def to_string(obiect):
