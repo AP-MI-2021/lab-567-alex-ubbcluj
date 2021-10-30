@@ -8,4 +8,3 @@ def test_creeaza_obiect():
     assert get_descriere(obiect) == "23.8'', Full HD, 144Hz"
     assert get_pret_achizitie(obiect) == 1099
     assert get_locatie(obiect) == "C503"
-
