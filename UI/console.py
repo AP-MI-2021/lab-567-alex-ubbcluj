@@ -9,7 +9,7 @@ def print_meniu():
     print("3. Modificare obiect")
     print("4. Mutarea tuturor obiectelor dintr-o locație în alta")
     print("5. Concatenarea unui string citit la toate descrierile obiectelor cu prețul mai mare decât o valoare citită")
-    print("6. Determinarea celui mai mare preț pentru fiecare locație")
+    print("6. Afisarea celui mai mare preț pentru fiecare locație")
     print("7. Afisarea obiectelor ordonate crescător după prețul de achiziție")
     print("8. Afișarea sumelor prețurilor pentru fiecare locație")
     #print("9. Undo")
@@ -18,41 +18,63 @@ def print_meniu():
 
 
 def console_adauga_obiect(lst):
-    ID = int(input("Introduceti ID-ul: "))
-    nume = input("Introduceti numele: ")
-    descriere = input("Introduceti descrierea: ")
-    pret_achizitie = float(input("Introduceti pretul de achizitie: "))
-    locatie = input("Introduceti locatia: ")
-    return adauga_obiect(ID, nume, descriere, pret_achizitie, locatie, lst)
+    try:
+        ID = int(input("Introduceti ID-ul: "))
+        nume = input("Introduceti numele: ")
+        descriere = input("Introduceti descrierea: ")
+        pret_achizitie = float(input("Introduceti pretul de achizitie: "))
+        locatie = input("Introduceti locatia: ")
+        return adauga_obiect(ID, nume, descriere, pret_achizitie, locatie, lst)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lst
 
 
 def console_sterge_obiect(lst):
-    ID = int(input("Introduceti ID-ul obiectului de sters: "))
-    return sterge_obiect(ID, lst)
+    try:
+        ID = int(input("Introduceti ID-ul obiectului de sters: "))
+        return sterge_obiect(ID, lst)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lst
 
 
 def console_modifica_obiect(lst):
-    ID = int(input("Introduceti ID-ul obiectului de modificat: "))
-    nume = input("Introduceti noul nume: ")
-    descriere = input("Introduceti noua descriere: ")
-    pret_achizitie = float(input("Introduceti noul pret de achizitie: "))
-    locatie = input("Introduceti noua locatie: ")
-    return modifica_obiect(ID, nume, descriere, pret_achizitie, locatie, lst)
+    try:
+        ID = int(input("Introduceti ID-ul obiectului de modificat: "))
+        nume = input("Introduceti noul nume: ")
+        descriere = input("Introduceti noua descriere: ")
+        pret_achizitie = float(input("Introduceti noul pret de achizitie: "))
+        locatie = input("Introduceti noua locatie: ")
+        return modifica_obiect(ID, nume, descriere, pret_achizitie, locatie, lst)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lst
 
 
 def console_mutare_obiect(lst):
-    old_loc = input("Introduceti locatia obiectelor pe care vreti sa le mutati: ")
-    new_loc = input("Introduceti noua locatie: ")
-    return mutare_obiecte(old_loc, new_loc, lst)
+    try:
+        old_loc = input("Introduceti locatia obiectelor pe care vreti sa le mutati: ")
+        new_loc = input("Introduceti noua locatie: ")
+        return mutare_obiecte(old_loc, new_loc, lst)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+    except RuntimeError as re:
+        print("Atentie! {}".format(re))
+        return lst
 
 
 def console_concatenare_str(lst):
-    str = input("Introduceti stringul: ")
-    console_pret = int(input("Introduceti un pret: "))
-    for obiect in lst:
-        if get_pret_achizitie(obiect) > console_pret:
-            obiect = concatenare_str(obiect, str)
-    return lst
+    try:
+        str = input("Introduceti stringul: ")
+        console_pret = int(input("Introduceti un pret: "))
+        for obiect in lst:
+            if get_pret_achizitie(obiect) > console_pret:
+                obiect = concatenare_str(obiect, str)
+        return lst
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lst
 
 
 def console_pret_max_fiecare_locatie(lst):

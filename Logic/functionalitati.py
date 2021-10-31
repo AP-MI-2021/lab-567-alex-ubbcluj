@@ -8,9 +8,17 @@ def mutare_obiecte(old_loc, new_loc, lst):
 	param. new_loc: noua locatie
 	return: lista dupa mutarea tuturor obiectele dintr-o locatie in alta
 	"""
+	exista_old_loc = False
 	for obiect in lst:
 		if get_locatie(obiect) == old_loc:
+			exista_old_loc = True
 			obiect["locatie"] = new_loc
+	if exista_old_loc is False:
+		raise ValueError("Locatia din care incercati sa mutati obiecte nu exista!")
+	if len(new_loc) != 4:
+		raise ValueError("Locatia noua trebuie sa aiba exact 4 caractere!")
+	if old_loc == new_loc:
+		raise RuntimeError("Locatia noua coincide cu cea curenta!")
 	return lst
 
 
@@ -49,12 +57,12 @@ def ordonare_cresc_dupa_pret(lst):
 	param. lst: lista de obiecte
 	return: lista ordonata crescator
 	"""
-	return sorted(lst, key = get_pret_achizitie)
+	return sorted(lst, key=get_pret_achizitie)
 
 
 def suma_fiecare_locatie(lst):
 	"""
-	afiseaza suma prețurilor pentru fiecare locație
+	determina suma prețurilor pentru fiecare locație
 	param. lst: lista de obiecte
 	return: un dictionar in care cheile sunt locatiile si valorile sunt sumele preturilor pentru ficare lcatie
 	"""

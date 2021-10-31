@@ -1,6 +1,18 @@
 from Domain.obiect import creeaza_obiect, get_ID
 
 
+def get_by_ID(ID, lst):
+    """
+    param ID: int
+    param lst: lista de obiecte
+    return: obiectul cu ID-ul introdus sau None, daca nu exista
+    """
+    for obiect in lst:
+        if get_ID(obiect) == ID:
+            return obiect
+    return None
+
+
 def adauga_obiect(ID, nume, descriere, pret_achizitie, locatie, lst):
     """
     adauga un obiect intr-o lista
@@ -12,19 +24,20 @@ def adauga_obiect(ID, nume, descriere, pret_achizitie, locatie, lst):
     param. lst: lista de obiecte
     return: o lista ce contine atat elementele vechi cat si noul obiect
     """
+    if ID < 1:
+        raise ValueError("ID-ul nu poate fi nenul sau negativ!")
+    if get_by_ID(ID, lst) is not None:
+        raise ValueError("ID-ul introdus exista deja!")
+    if len(nume) == 0:
+        raise ValueError("Numele nu poate fi nenul!")
+    if len(descriere) == 0:
+        raise ValueError("Descrierea nu poate fi nenula!")
+    if int(pret_achizitie) < 1000 or int(pret_achizitie) > 9999:
+        raise ValueError("Pretul de achizitie trebuie sa aiba partea intreaga exact 4 cifre!")
+    if len(locatie) != 4:
+        raise ValueError("Locatia trebuie sa aiba exact 4 caractere!")
     obiect = creeaza_obiect(ID, nume, descriere, pret_achizitie, locatie)
     return lst + [obiect]
-
-
-def get_by_ID(ID, lst):
-    """
-    param ID: int
-    param lst: lista de obiecte
-    return: obiectul cu ID-ul introdus sau None, daca nu exista
-    """
-    for obiect in lst:
-        if get_ID(obiect) == ID: return obiect
-    return None
 
 
 def sterge_obiect(ID, lst):
@@ -34,6 +47,8 @@ def sterge_obiect(ID, lst):
     param. lst: o lista de obiecte
     return: lista fara obiectul cu ID-ul introdus
     """
+    if get_by_ID(ID, lst) is None:
+        raise ValueError("Obiectul cu ID-ul introdus nu exista!")
     return [obiect for obiect in lst if get_ID(obiect) != ID]
 
 
@@ -48,10 +63,13 @@ def modifica_obiect(ID, nume, descriere, pret_achizitie, locatie, lst):
     param. lst: lista de obiecte
     return: o lista in care obiectul cu ID-ul introdus este modificat
     """
+    if get_by_ID(ID, lst) is None:
+        raise ValueError("Obiectul cu ID-ul introdus nu exista!")
     new_lst = []
     for obiect in lst:
         if obiect == get_by_ID(ID, lst):
             obiect_nou = creeaza_obiect(ID, nume, descriere, pret_achizitie, locatie)
             new_lst.append(obiect_nou)
-        else: new_lst.append(obiect)
+        else:
+            new_lst.append(obiect)
     return new_lst
