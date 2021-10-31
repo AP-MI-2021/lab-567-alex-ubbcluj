@@ -67,7 +67,7 @@ def console_mutare_obiect(lst):
 def console_concatenare_str(lst):
     try:
         str = input("Introduceti stringul: ")
-        console_pret = int(input("Introduceti un pret: "))
+        console_pret = float(input("Introduceti un pret: "))
         for obiect in lst:
             if get_pret_achizitie(obiect) > console_pret:
                 obiect = concatenare_str(obiect, str)
