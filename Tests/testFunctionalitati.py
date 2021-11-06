@@ -16,8 +16,8 @@ def test_mutare_obiecte():
 
 def test_concatenare_str():
     obiect = creeaza_obiect(256, "Monitor Dell", "23.8'', Full HD, 144Hz", 1099.0, "C503")
-    str = " string de test"
-    obiect = concatenare_str(obiect, str)
+    string = " string de test"
+    concatenare_str(obiect, string)
     assert get_descriere(obiect) == "23.8'', Full HD, 144Hz string de test"
 
 

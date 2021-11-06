@@ -22,14 +22,14 @@ def mutare_obiecte(old_loc, new_loc, lst):
 	return lst
 
 
-def concatenare_str(obiect, str):
+def concatenare_str(obiect, string):
 	"""
 	concateneaza un string la descrierea unui obiect
 	param. obiect: obiectul
 	param. str: stringul
 	return: obiectul dupa concatenarea stringului la descriere
 	"""
-	obiect["descriere"] = get_descriere(obiect) + str
+	obiect["descriere"] = get_descriere(obiect) + string
 	return obiect
 
 
